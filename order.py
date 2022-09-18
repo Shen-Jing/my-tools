@@ -4,13 +4,17 @@ import requests
 from requests.auth import HTTPBasicAuth
 from bs4 import BeautifulSoup
 from datetime import datetime
+import pytz
+import pymsteams
 
 if datetime.today().weekday() >= 5:
     print("Today is weekend. No action.")
     sys.exit()
     
-td = datetime.today().strftime('%Y/%m/%d')
-url = "http://oas/leave/pages/OrderList01.jsp?queryStartDate={}&queryEndDate={}".format(td, td)
+taipei_timezone = pytz.timezone("Asia/Taipei")
+taipei_date = datetime.now(taipei_timezone).strftime('%Y/%m/%d')
+url = "http://oas/leave/pages/OrderList01.jsp?queryStartDate={}&queryEndDate={}".format(taipei_date, taipei_date)
+
 conf = yaml.load(open('order_auth.yaml'))  # deprecated, need to modify
 userid = conf['user']['userid']
 pwd = conf['user']['password']
@@ -34,5 +38,6 @@ for row in rows:
     if uid in user_set:
         num_users += 1
         td_list.append(uid)
+
 print(num_users)
 print(td_list)
