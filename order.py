@@ -67,7 +67,7 @@ for row in rows:
 webhook_url = conf['webhook']
 teams_title = "[Overtime Meal] " + taipei_date
 # TODO: mention all
-teams_subtitle = "<at>Overtime Meal</at>\n\n The Number of Users: ***{}***".format(num_users)
+teams_subtitle = "The Number of Users: ***{}***".format(num_users)
 teams_content = "Lists: *{}*".format(" ".join(td_list))
 send_teams(webhook_url = webhook_url, title = teams_title, subtitle = teams_subtitle, content = teams_content)
 # print(num_users)
