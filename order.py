@@ -55,12 +55,18 @@ num_users = 0
 rows = soup.find("tbody").find_all("tr")
 for row in rows:
     cells = row.find_all("td")
+
+    #for idx, cell in enumerate(cells):
+    #    print(idx, cell)
     uid_idx = 1
-    if uid_idx >= len(cells):
+    location_idx = 6
+    if location_idx >= len(cells):
         continue
     uid = cells[uid_idx].get_text().strip()
+    location = cells[location_idx].get_text().strip()
     # print(uid)
-    if uid in user_set:
+    # print(location)
+    if uid in user_set and location == "TW52":
         num_users += 1
         td_list.append(uid)
 
